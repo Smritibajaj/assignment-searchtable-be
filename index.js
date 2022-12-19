@@ -3,4 +3,5 @@ const port = require('./configs/app.config')
 require('./configs/db.config');
 require('./schemas/index');
 const app = require('./server');
-app.listen(port.SERVER_PORT,() => console.log(`service is running ${port.SERVER_PORT}`))
+app.listen(5000,() => console.log(`service is running 5000`))
+module.exports = app;
