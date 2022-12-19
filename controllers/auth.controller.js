@@ -42,13 +42,12 @@ const AuthController = {
 
   signUp: async (req, res, next) => {
     try {
-      const { email, password, authType, name, userName } = req.body;
-      console.log(AuthService);
-      debugger
+      const { email, password, authType, userName, company_name } = req.body;
       const signUpUser = await AuthService.signUpUser({
         email,
         password,
         userName,
+        company_name
       });
       return res.status(httpStatus.OK).json({
         status: httpStatus.OK,

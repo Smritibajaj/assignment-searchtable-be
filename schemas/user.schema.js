@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Blog = require('./blog.schema');
+const Company = require('./company.schema');
 
 const ImageSchema = new mongoose.Schema({
   image: Buffer,
@@ -18,6 +18,9 @@ const UserSchema = mongoose.Schema({
   userName: {
     type: String,
   },
+  company_name:{
+    type: String,
+  },
   images: [ImageSchema]
 });
 
@@ -29,8 +32,8 @@ UserSchema.set("toJSON", {
   },
 });
 
-UserSchema.virtual("blogs", {
-  ref: "blog",
+UserSchema.virtual("companies", {
+  ref: "company",
   localField: "_id",
   foreignField: "owner",
 });

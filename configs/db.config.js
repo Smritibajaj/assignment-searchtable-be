@@ -1,21 +1,21 @@
 const mongoose = require('mongoose'); 
 const { SERVER_PORT, DATABASE, ENV } = require('../configs/app.config');
-//mongodb://localhost:27017/blogapp
 
 //Mongoose Debugging for Dev
 if(ENV === 'DEVELOPMENT') {
     mongoose.set("debug", true);
 }
 const getDbUri = () => {
-    return `mongodb+srv://${DATABASE.MONGO.username}:${DATABASE.MONGO.password}@${DATABASE.MONGO.host}/${DATABASE.MONGO.database}?retryWrites=true&w=majority`;
+    //return `mongodb+srv://${DATABASE.MONGO.username}:${DATABASE.MONGO.password}@${DATABASE.MONGO.host}/${DATABASE.MONGO.database}?retryWrites=true&w=majority`;
+    //return `mongodb://test1:test1234@127.0.0.1:27017/testdb`
+    return `mongodb://test1:test1234@127.0.0.1:27017/testdb?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.1`
 }
 
 const URI = getDbUri();
-console.log(URI)
 mongoose.connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+})
 
 mongoose.connection.on('connected', () => {
     console.log('Mongoose default connection open');

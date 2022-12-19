@@ -1,14 +1,14 @@
 const httpStatus = require("http-status-codes");
-const { BlogService } = require("../services/index");
+const { CompanyService } = require("../services/index");
 
-const BlogController = {
-    createBlog: async (req, res) => {
+const CompanyController = {
+    createCompany: async (req, res) => {
         try {
             const { user, body } = req;
-            const blog = await BlogService.createBlog({...body, owner: user._id});
+            const company = await CompanyService.createCompany({...body, owner: user._id});
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
-                response: blog,
+                response: company,
               });
         } catch(error) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
@@ -17,16 +17,16 @@ const BlogController = {
             })
         }
     },
-    getBlog: async(req, res) => {
+    getCompany: async(req, res) => {
         console.log('this is working');
         try {
             console.log('its coming here', req.user)
             const { user } = req;
             const query = {_id: req.params.id, owner: user._id}
-            const blogs = await BlogService.getBlogById(query);
+            const companies = await CompanyService.getCompanyById(query);
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
-                response: blogs
+                response: companies
             })
         } catch(error) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
@@ -35,15 +35,15 @@ const BlogController = {
             })
         }
     }, 
-    getAllBlogs: async(req, res) => {
+    getAllCompanies: async(req, res) => {
         console.log('this is working');
         try {
             console.log('its coming here', req.user)
             const { user } = req;
-            const blogs = await BlogService.getAllBlogs(user);
+            const companies = await CompanyService.getAllCompanies(user);
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
-                response: blogs
+                response: companies
             })
         } catch(error) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
@@ -52,11 +52,11 @@ const BlogController = {
             })
         }
     }, 
-    updateBlog: async(req,res) => {
+    updateCompany: async(req,res) => {
         try {
             const { body: { query, condition } } = req;
             console.log(query, condition);
-            const response = await BlogService.updateBlog(query, condition);
+            const response = await CompanyService.updateCompany(query, condition);
             console.log(response, 'hahhah');
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
@@ -69,11 +69,11 @@ const BlogController = {
             })
         } 
     },
-    deleteBlog: async(req,res) => {
+    deleteCompany: async(req,res) => {
         try {
             const _id = req.params.id;
             const { user  } = req;
-            const response = await BlogService.deleteBlog({_id, owner: user._id});
+            const response = await CompanyService.deleteCompany({_id, owner: user._id});
             console.log(response, 'hahhah');
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
@@ -87,4 +87,4 @@ const BlogController = {
         } 
     }
 };
-module.exports = BlogController;
+module.exports = CompanyController;

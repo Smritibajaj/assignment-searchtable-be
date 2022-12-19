@@ -1,8 +1,8 @@
 const httpStatus = require("http-status-codes");
 const { checkSchema } = require("express-validator");
-const { ALLOWED_KEYS_TO_UPDATE } = require('../configs/blog.config');
+const { ALLOWED_KEYS_TO_UPDATE } = require('../configs/company.config');
 
-exports.addNewBlog = checkSchema({
+exports.addNewCompany = checkSchema({
   title: {
     notEmpty: true,
     isString: true,

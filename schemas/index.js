@@ -1,6 +1,6 @@
 const UserSchema = require('./user.schema');
-const BlogSchema = require('./blog.schema');
+const CompanySchema = require('./company.schema');
 module.exports = {
     UserSchema,
-    BlogSchema
+    CompanySchema
 }

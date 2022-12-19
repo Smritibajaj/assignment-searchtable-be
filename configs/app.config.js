@@ -1,6 +1,6 @@
 const { PORT, ENV, DB_HOST, DB_USER, DB_PASSWORD, DB } = process.env;
 module.exports = {
-    SERVER_PORT: process.env.PORT || 3000,
+    SERVER_PORT: process.env.PORT || 3003,
     ENV,
     DATABASE: {
         MONGO: {
@@ -10,5 +10,5 @@ module.exports = {
             database: DB
         }
     },
-    JWT_SECRET: '$&&__BLOGAPP__&&$%@#$@&!@#'  
+    JWT_SECRET: '$&&__DATAAPP__&&$%@#$@&!@#'
 }

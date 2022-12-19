@@ -1,2 +1,2 @@
 module.exports.UserModel = require('./user.model');
-module.exports.BlogModel = require('./blog.model');
+module.exports.CompanyModel = require('./company.model');
