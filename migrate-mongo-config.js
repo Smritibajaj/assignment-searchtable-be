@@ -2,7 +2,7 @@
 
 const config = {
   mongodb: {
-    url: "mongodb://test1:test1234@127.0.0.1:27017",
+    url: process.env.DATABASEURL,
     // TODO Change this to your database name:
     databaseName: "testdb",
     options: {
