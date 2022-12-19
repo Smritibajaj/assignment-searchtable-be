@@ -3,5 +3,5 @@ const port = require('./configs/app.config')
 require('./configs/db.config');
 require('./schemas/index');
 const app = require('./server');
-app.listen(5000,() => console.log(`service is running 5000`))
+app.listen(3003,() => console.log(`service is running 5000`))
 module.exports = app;
