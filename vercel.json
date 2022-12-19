@@ -2,8 +2,8 @@
     "version": 2,
     "builds": [
       {
-        "src": "package.json",
-        "use": "now-sapper"
+        "src": "index.js",
+        "use": "@now/node"
       }
     ],
     "routes": [

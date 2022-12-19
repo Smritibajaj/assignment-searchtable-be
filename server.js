@@ -33,8 +33,8 @@ passport.use("jwt", JwtStrategy);
 
 require("./routes/index")(app);
 app.use("/uploads", express.static("uploads"));
-app.use("/", (req, res) => {
-  res.send(200)
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
 });
 app.use(handleNotFound);
 
