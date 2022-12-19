@@ -1,3 +1,4 @@
+const { query } = require("express");
 const httpStatus = require("http-status-codes");
 const { CompanyService } = require("../services/index");
 
@@ -35,15 +36,33 @@ const CompanyController = {
             })
         }
     }, 
-    getAllCompanies: async(req, res) => {
+    getAllUserSelectedCompanies: async(req, res) => {
         console.log('this is working');
         try {
             console.log('its coming here', req.user)
             const { user } = req;
-            const companies = await CompanyService.getAllCompanies(user);
+            const companies = await CompanyService.getAllUserSelectedCompanies(user);
             return res.status(httpStatus.OK).json({
                 status: httpStatus.OK,
                 response: companies
+            })
+        } catch(error) {
+            res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+                status: httpStatus.INTERNAL_SERVER_ERROR,
+                response: httpStatus.getStatusText(httpStatus.INTERNAL_SERVER_ERROR)
+            })
+        }
+    }, 
+    getAllCompanies: async(req, res) => {
+        console.log('this is working');
+        try {
+            console.log('its coming here', req.query);
+            const total = await CompanyService.getAllCompanieswithoutQuery();
+            const companies = await CompanyService.getAllCompanies(req.query);
+            return res.status(httpStatus.OK).json({
+                status: httpStatus.OK,
+                response: companies,
+                meta: {page: req.query.page ?? 0, limit: req.query.limit ?? 10, total: total.length}
             })
         } catch(error) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json({

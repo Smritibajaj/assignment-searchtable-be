@@ -9,6 +9,7 @@ const { CompanyController } = require("../controllers/index");
 router.route("/create").post(addNewCompany, checkError, CompanyController.createCompany);
 
 router.route("/allcompanies").get(CompanyController.getAllCompanies);
+router.route("/usercompanies").get(CompanyController.getAllUserSelectedCompanies);
 
 router.route("/company/:id").get(CompanyController.getCompany);
 
