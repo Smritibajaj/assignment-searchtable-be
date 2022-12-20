@@ -4,10 +4,10 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const { localStrategy, JwtStrategy } = require("./helper/passport");
 const { handleNotFound } = require("./middlewear/error");
-const cors = require('cors');
+const cors = require("cors");
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
@@ -30,11 +30,19 @@ app.options("*", function (req, res) {
 app.use(passport.initialize());
 passport.use("login", localStrategy);
 passport.use("jwt", JwtStrategy);
-app.get('/', (req,res) =>  {
-  res.send(200)
-})
 require("./routes/index")(app);
 app.use("/uploads", express.static("uploads"));
+app.get("/", async (req, res) => {
+  try {
+    res.json({
+      status: 200,
+      message: "Get data has successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).send("server error");
+  }
+});
 app.use(handleNotFound);
 
 module.exports = app;
