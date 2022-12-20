@@ -9,7 +9,7 @@ if(ENV === 'DEVELOPMENT') {
 const getDbUri = () => {
     //return `mongodb+srv://${DATABASE.MONGO.username}:${DATABASE.MONGO.password}@${DATABASE.MONGO.host}/${DATABASE.MONGO.database}?retryWrites=true&w=majority`;
     //return `mongodb://test1:test1234@127.0.0.1:27017/testdb`
-    return `mongodb+srv://simmy:simmy@cluster0.i23hs0o.mongodb.net/testdb?retryWrites=true&w=majority/testdb`
+    return `mongodb+srv://simmy:simmy@cluster0.i23hs0o.mongodb.net/testdb?retryWrites=true&w=majority`
 }
 
 const URI = getDbUri();
