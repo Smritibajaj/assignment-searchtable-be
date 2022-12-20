@@ -18,7 +18,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-
+app.use(cors())
+app.options('*', cors());
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
