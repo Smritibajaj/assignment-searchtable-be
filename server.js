@@ -30,7 +30,9 @@ app.options("*", function (req, res) {
 app.use(passport.initialize());
 passport.use("login", localStrategy);
 passport.use("jwt", JwtStrategy);
-
+app.get('/', (req,res) =>  {
+  res.send(200)
+})
 require("./routes/index")(app);
 app.use("/uploads", express.static("uploads"));
 app.use(handleNotFound);
