@@ -33,10 +33,6 @@ passport.use("jwt", JwtStrategy);
 
 require("./routes/index")(app);
 app.use("/uploads", express.static("uploads"));
-app.get("/", (req, res) => {
-  res.send("Express on Vercel");
-});
-app.get('/favicon.ico', (req, res) => res.status(204));
 app.use(handleNotFound);
 
 module.exports = app;
