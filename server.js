@@ -18,8 +18,28 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use(cors())
-app.options('*', cors());
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+
+  let isDomainAllowed = whitelist.indexOf(req.header("Origin")) !== -1;
+  let isExtensionAllowed = req.path.endsWith(".jpg");
+
+  if (isDomainAllowed && isExtensionAllowed) {
+    // Enable CORS for this request
+    corsOptions = { origin: true };
+  } else {
+    // Disable CORS for this request
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+
+app.use(cors(corsOptionsDelegate));
+const allowlist = [
+  "http://localhost:3000",
+  "https://assignment-simmy.netlify.app",
+];
+app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
