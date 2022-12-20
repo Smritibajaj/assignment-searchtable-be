@@ -3,14 +3,14 @@ const router = require("express").Router({
   strict: true,
 });
 const path = require('path');
-const imageUpload = require("../middlewear/image");
-const multer = require('multer');
-const ImageController = require("../controllers/image.controller");
-const { handleImageError } = require('../middlewear/error');
+//const imageUpload = require("../middlewear/image");
+//const multer = require('multer');
+//const ImageController = require("../controllers/image.controller");
+//const { handleImageError } = require('../middlewear/error');
 
 
 
 
-router.post('/uploadImage', imageUpload.single('image'), ImageController.uploadImage , handleImageError)
+//router.post('/uploadImage', imageUpload.single('image'), ImageController.uploadImage , handleImageError)
 
 module.exports = router;

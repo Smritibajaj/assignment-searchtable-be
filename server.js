@@ -31,7 +31,7 @@ app.use(passport.initialize());
 passport.use("login", localStrategy);
 passport.use("jwt", JwtStrategy);
 require("./routes/index")(app);
-app.use("/uploads", express.static("uploads"));
+//app.use("/uploads", express.static("uploads"));
 app.get("/", async (req, res) => {
   try {
     res.json({
